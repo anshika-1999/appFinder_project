@@ -19,5 +19,6 @@ from appSearch import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.search , name='search'),
+    path('', views.home , name='home'),
+    path('search/', include('appSearch.urls')),
 ]

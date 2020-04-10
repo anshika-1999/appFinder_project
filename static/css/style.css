@@ -1,0 +1,39 @@
+.further-form {
+  display: none;
+}
+
+#appCard {
+  display:none;
+}
+
+#appimage {
+  height:500px;
+  width:100%;
+}
+.card-title {
+  font-weight:bold;
+}
+#appdev {
+  font-weight:bold;
+}
+#errormessage {
+  display:none;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  border: none;
+  &:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4);
+  }
+  a {
+    color: initial;
+    &:hover {
+      text-decoration: initial;
+    }
+  }
+  .text-muted i {
+    margin: 0 10px;
+  }
+}

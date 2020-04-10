@@ -1,5 +1,69 @@
 {% extends 'base.html' %}
 
 {% block content %}
-HI
+{% load staticfiles %}
+
+
+<div class="container">
+<h2>Please Select A Store</h2>
+<div id='search-box'>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" name="storeRadio" id="inlineRadio1" value="appStore">
+  <label class="form-check-label" for="inlineRadio1">App Store</label>
+</div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" name="storeRadio" id="inlineRadio2" value="googlePlay">
+  <label class="form-check-label" for="inlineRadio2">Google Play</label>
+</div>
+</div>
+<div class="further-form-appStore further-form">
+  <h4>App Store</h4>
+  <div >
+  <div class="form-group" class="appStoreForm">
+    <label for="appname">Application Name</label>
+    <input type="text" class="form-control" id="appname">
+  </div>
+  <div class="form-group" class="appStoreForm">
+    <label for="appid">Application ID</label>
+    <input type="text" class="form-control" id="appid">
+  </div>
+  <button type="button" class="btn btn-primary appStoreButton">Get Info</button>
+  </div>
+</div>
+<div class="further-form-googlePlay further-form">
+  <h4>Google Play</h4>
+  <div >
+  <div class="form-group" class="googlePlayForm">
+    <label for="packageName">Package Name</label>
+    <input type="text" class="form-control" id="package">
+  </div>
+  <button type="button" class="btn btn-primary googlePlayButton">Submit</button>
+</div>
+</div>
+<br><br>
+<div class="alert alert-danger" id="errormessage"></div>
+<br>
+<div class="container" id="appCard">
+  <div class="row">
+    <div class="col-lg-6">
+<div class="card">
+     <img class="card-img-top" id="appimage" src="" alt="Card image cap">
+     <div class="card-body">
+       <h5 class="card-title" id="apptitle"></h5>
+       <br>
+       <p class="card-text"><span id="appdesc"></span><span id="dots">... </span><span id="appfurtherdesc"></span><span class="fake-link" onclick="readmorefun()" id="readmore"> Read More </span></p>
+       <p class="card-text" id="appdev"></p>
+       <p class="card-text">
+         <small class="text-muted">
+           Views <i class="fa fa-eye"></i>&nbsp<span id="appview"></span><span id="appdownloads"></span>&nbsp &nbsp Rating <span id="apprating"></span>
+         </small>
+       </p>
+   </div>
+   </div>
+   </div>
+   </div>
+   </div>
+   <br>
+</div>
+
 {% endblock %}
