@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load staticfiles %}
+<div class="container">
+<h1> Keyword Finder</h1>
+<div class="form-group" class="keywordFinderForm">
+  <label for="websiteurl">Website URL</label>
+  <input type="text" class="form-control" id="websiteurl">
+</div>
+<button type="button" class="btn btn-primary keywordFinderButton">Get Keywords</button>
+<br><br>
+<div class="alert alert-danger" id="errormessage"></div>
+<br>
+<div class="card"  id="keywordCard">
+  <div class="card-body">
+    <h4 class="card-title">Keywords</h4>
+    <p class="card-text" id="keywordContent1"></p>
+    <h4 class="card-title" id="keywordTitle"></h4>
+    <p class="card-text" id="keywordContent2"></p>
+  </div>
+</div>
+<br><br>
+  </div>
+
+
+{% endblock %}

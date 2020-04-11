@@ -21,4 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home , name='home'),
     path('search/', include('appSearch.urls')),
+    path('keyword/', include('keywordFinder.urls'))
 ]

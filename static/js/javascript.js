@@ -1,3 +1,19 @@
+function readmorefun() {
+  var dots = document.getElementById("dots");
+  var moreText = document.getElementById("appfurtherdesc");
+  var btnText = document.getElementById("readmore");
+
+  if (dots.style.display === "none") {
+    dots.style.display = "inline";
+    btnText.innerHTML = "Read more";
+    moreText.style.display = "none";
+  } else {
+    dots.style.display = "none";
+    btnText.innerHTML = "Read less";
+    moreText.style.display = "inline";
+  }
+}
+
 
 $('.googlePlayButton').click(function(){
     var p;
@@ -7,7 +23,7 @@ $('.googlePlayButton').click(function(){
     $.ajax(
     {
         type:"GET",
-        url: "/googlePlay",
+        url: "googlePlay/",
         data:{
                  package: p
         },
@@ -18,6 +34,7 @@ $('.googlePlayButton').click(function(){
             $('#appimage').attr('src', data['image']);
             $('#apptitle').html(data['title']);
             $('#appdesc').html(data['description']);
+            $('#appfurtherdesc').html(data['furtherdescription']);
             $('#appview').html(data['numReview']);
             $('#appdownloads').html(" &nbsp Downloads <i class='glyphicon glyphicon-download-alt'> </i> &nbsp "+data['installs']);
             r=parseInt(data['rating'])
@@ -56,7 +73,7 @@ $('.appStoreButton').click(function(){
     $.ajax(
     {
         type:"GET",
-        url: "/appStore",
+        url: "appStore/",
         data:{
                  appid: id,
                  appname: name
@@ -68,6 +85,7 @@ $('.appStoreButton').click(function(){
           $('#appimage').attr('src', data['image']);
           $('#apptitle').html(data['title']);
           $('#appdesc').html(data['description']);
+          $('#appfurtherdesc').html(data['furtherdescription']);
           $('#appview').html(data['numReview']);
           r=parseInt(data['rating'])
           var ans=''
@@ -113,4 +131,60 @@ $('#search-box input').on('change', function() {
    $('#appCard').css("display","none");
    $('#package').val("");
  }
+});
+
+
+$('.keywordFinderButton').click(function(){
+    var url;
+    $(".keywordFinderButton").attr("disabled", true);
+    url = document.getElementById('websiteurl').value;
+
+    $.ajax(
+    {
+        type:"GET",
+        url: "urlkeyword/",
+        data:{
+                 url: url
+        },
+        success: function( data )
+        {
+          if( data['v']==1){
+            $("#errormessage").css("display","block");
+            $("#errormessage").html("Please enter a valid URL.");
+          }
+          if(data['v']==2){
+            $("#errormessage").css("display","block");
+            $("#errormessage").html("Please enter in the URL field.");
+          }
+          if (data['v']==0){
+            $('#keywordCard').css("display","block");
+            $("#errormessage").css("display","none");
+            var a='<ul>';
+            var i;
+            for (i = 0; i < data['keywords'].length; i++) {
+                a=a+"<li>"+data['keywords'][i]+"</li>";
+            }
+            a=a+"</ul>";
+            $('#keywordContent1').html(a);
+            if(data['reckeywords']!=''){
+              $('#keywordTitle').html('Recommended Keywords');
+              var a='<ul>';
+              var i;
+              for (i = 0; i < data['reckeywords'].length; i++) {
+                  a=a+"<li>"+data['reckeywords'][i]+"</li>";
+              }
+              a=a+"</ul>";
+              $('#keywordContent2').html(a);
+            }
+          }
+          $(".keywordFinderButton").attr("disabled", false);
+
+        },
+        error: function(data) {
+          $('#keywordCard').css("display","none");
+          $("#errormessage").css("display","block");
+          $("#errormessage").html("Please enter a validd URL.");
+          $(".keywordFinderButton").attr("disabled", false);
+        }
+     });
 });

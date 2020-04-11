@@ -6,6 +6,11 @@
   display:none;
 }
 
+#keywordCard {
+  display:none;
+  width: 28rem;
+}
+
 #appimage {
   height:500px;
   width:100%;
@@ -29,7 +34,7 @@
 }
 
 .class-text{
-  
+
 }
 
 .card {

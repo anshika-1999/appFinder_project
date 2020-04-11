@@ -9,7 +9,7 @@ BASE_GOOGLE_URL = "https://play.google.com/store/apps/details?id={}"
 BASE_APP_STORE_URL = "https://apps.apple.com/in/app/{name}/id{id}"
 
 def home(request):
-    return HttpResponse("HOME")
+    return render(request, 'appSearch/home.html')
 
 def search(request):
     return render(request, 'appSearch/search.html' )
@@ -58,8 +58,7 @@ def googlePlay(request):
         }
         return HttpResponse(json.dumps(params),content_type="application/json")
     else:
-        h='fa'
-        return HttpResponse(json.dumps(h),content_type="application/json")
+        return HttpResponse("Request method is not a GET")
 
 def appStore(request):
     if request.method == 'GET':

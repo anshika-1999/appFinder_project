@@ -132,3 +132,65 @@ $('#search-box input').on('change', function() {
    $('#package').val("");
  }
 });
+
+
+$('.keywordFinderButton').click(function(){
+    var url;
+    $(".keywordFinderButton").attr("disabled", true);
+    url = document.getElementById('websiteurl').value;
+
+    $.ajax(
+    {
+        type:"GET",
+        url: "urlkeyword/",
+        data:{
+                 url: url
+        },
+        success: function( data )
+        {
+          if( data['v']==1){
+            $('#keywordCard').css("display","none");
+            $("#errormessage").css("display","block");
+            $("#errormessage").html("Please enter a valid URL.");
+          }
+          if(data['v']==2){
+            $('#keywordCard').css("display","none");
+            $("#errormessage").css("display","block");
+            $("#errormessage").html("Please enter in the URL field.");
+          }
+          if (data['v']==0){
+            $('#keywordCard').css("display","block");
+            $("#errormessage").css("display","none");
+            if(data['keywords']==''){
+                $('#keywordContent1').html("There were no keywords found in the website.");
+            } else {
+            var a='<ul>';
+            var i;
+            for (i = 0; i < data['keywords'].length; i++) {
+                a=a+"<li>"+data['keywords'][i]+"</li>";
+            }
+            a=a+"</ul>";
+            $('#keywordContent1').html(a);
+            if(data['reckeywords']!=''){
+              $('#keywordTitle').html('Recommended Keywords');
+              var a='<ul>';
+              var i;
+              for (i = 0; i < data['reckeywords'].length; i++) {
+                  a=a+"<li>"+data['reckeywords'][i]+"</li>";
+              }
+              a=a+"</ul>";
+              $('#keywordContent2').html(a);
+            }
+          }
+          }
+          $(".keywordFinderButton").attr("disabled", false);
+
+        },
+        error: function(data) {
+          $('#keywordCard').css("display","none");
+          $("#errormessage").css("display","block");
+          $("#errormessage").html("Sorry some error occured");
+          $(".keywordFinderButton").attr("disabled", false);
+        }
+     });
+});
