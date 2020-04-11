@@ -1,7 +1,35 @@
-{% extends 'home.html' %}
+{% extends 'base.html' %}
 
+{% block title %}Scraper{% endblock %}
+{% block active %}active{% endblock %}
 
 {% block content %}
+{% load staticfiles %}
 
-HOME
-{% endblock %HOME}
+<section>
+  <video src="{% static 'css/smoke.mp4' %}" autoplay muted></video>
+  <h1 class="heading">
+    <span>S</span>
+    <span>C</span>
+    <span>R</span>
+    <span>A</span>
+    <span>P</span>
+    <span>E</span>
+    <span>R</span>
+  </h1>
+</section>
+
+<div class="container">
+  <div class="box">
+  <label>
+    <input type="radio" name="scraper">
+    <a href="{% url 'search' %}"><span class="appsearcher colo">App Searcher</span></a>
+  </label>
+  <label>
+    <input type="radio" name="scraper">
+    <a href="{% url 'keyword' %}"><span class="keywordfind colo">Keyword Finder</span></a>
+  </label>
+  </div>
+</div>
+
+{% endblock %}

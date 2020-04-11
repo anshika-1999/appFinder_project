@@ -1,11 +1,14 @@
 {% extends 'base.html' %}
 
+{% block title %}Keyword Finder{% endblock %}
+{% block active2 %}active{% endblock %}
+
 {% block content %}
 {% load staticfiles %}
 <div class="container">
-<h1> Keyword Finder</h1>
-<div class="form-group" class="keywordFinderForm">
-  <label for="websiteurl">Website URL</label>
+<h1 class="colo"> Keyword Finder</h1>
+<div class="form-group" class="keywordFinderForm colo">
+  <label for="websiteurl" class="colo">Website URL</label>
   <input type="text" class="form-control" id="websiteurl">
 </div>
 <button type="button" class="btn btn-primary keywordFinderButton">Get Keywords</button>
